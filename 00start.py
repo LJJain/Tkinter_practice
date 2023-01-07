@@ -1,3 +1,12 @@
+# from tkinter import *
+# from PIL import ImageTk, Image
+
+# root = Tk()
+# root.title('Learn To Code Tkinter')
+# # root.iconbitmap('icon file')
+
+# mainloop()
+
 from tkinter import *
 from PIL import ImageTk, Image
 
