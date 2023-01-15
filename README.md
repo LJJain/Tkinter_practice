@@ -11,3 +11,8 @@
     1. (已解決)import mysql.connector 連接MSQL會出現:Authentication plugin ‘caching_sha2_password’ is not supported問題
         - 改用 import pymysql
         - 參考資料:https://medium.com/@fadeawaygod/%E7%94%A8python-call-mysql-8-0%E5%87%BA%E7%8F%BEauthentication-plugin-caching-sha2-password-is-not-supported-39c5b907aed7
+
+- 2023.01.10
+    1. 將Tkinter 轉 EXE  
+        (1) 安裝 pyinstaller (pip install pyinstaller)  
+        (2) pyinstaller.exe --onefile --icon=(icon file) (filename.py)

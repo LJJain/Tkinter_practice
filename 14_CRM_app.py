@@ -63,7 +63,6 @@ def clearFields():
     box_country.delete(0, END)
     box_phone.delete(0, END)
     box_email.delete(0, END)
-    # box_username.delete(0, END)
     box_payment_method.delete(0, END)
     box_discount_code.delete(0, END)
     box_pricepaid.delete(0, END)
@@ -92,6 +91,130 @@ def searchCustomer():
     search_customers.title('Search Customers')
     search_customers.geometry('1024x768')
     
+    def update():
+        sql_command = """UPDATE customers SET first_name=%s, last_name=%s, zipcode=%s, price_paid=%s, email=%s, address_1=%s, address_2=%s, city=%s, state=%s, country=%s, phone=%s, payment_method=%s, discount_code=%s WHERE user_id=%s"""
+
+        first_name=box_first_name2.get()
+        last_name=box_last_name2.get()
+        zipcode=box_zipcode2.get()
+        price_paid=box_pricepaid2.get()
+        email=box_email2.get()
+        address_1=box_address1_2.get()
+        address_2=box_address2_2.get()
+        city=box_city2.get()
+        state=box_state2.get()
+        country=box_country2.get()
+        phone=box_phone2.get()
+        payment_method=box_payment_method2.get()
+        discount_code=box_discount_code2.get()
+        id_value = box_id2.get()
+
+        inputs = (first_name, last_name, zipcode, price_paid, email, address_1, address_2, city, state, country, phone, payment_method, discount_code, id_value)
+        cursor.execute(sql_command, inputs)
+        conn.commit()
+
+        search_customers.destroy()
+        
+
+
+    
+    def edit(id_reference, index):
+        sql_2 = "SELECT * FROM customers WHERE user_id = %s"
+        name_2 = (id_reference,)
+        result_2 = cursor.execute(sql_2, name_2)
+        result_2 = cursor.fetchall()
+        print(result_2)
+
+        index += 3
+        lab_first_name = Label(search_customers, text='First Name').grid(row=index+1, column=0, sticky=W, padx=10, pady=10)
+        lab_last_name = Label(search_customers, text='Last Name').grid(row=index+2, column=0, sticky=W, padx=10)
+        lab_address1 = Label(search_customers, text='Address 1').grid(row=index+3, column=0, sticky=W, padx=10)
+        lab_address2 = Label(search_customers, text='Address 2').grid(row=index+4, column=0, sticky=W, padx=10)
+        lab_city = Label(search_customers, text='City').grid(row=index+5, column=0, sticky=W, padx=10)
+        lab_state = Label(search_customers, text='State').grid(row=index+6, column=0, sticky=W, padx=10)
+        lab_zipcode = Label(search_customers, text='Zip Code').grid(row=index+7, column=0, sticky=W, padx=10)
+        lab_country = Label(search_customers, text='Country').grid(row=index+8, column=0, sticky=W, padx=10)
+        lab_phone = Label(search_customers, text='Phone').grid(row=index+9, column=0, sticky=W, padx=10)
+        lab_email = Label(search_customers, text='Email').grid(row=index+10, column=0, sticky=W, padx=10)
+        lab_payment_method = Label(search_customers, text='Payment Method').grid(row=index+11, column=0, sticky=W, padx=10)
+        lab_discount_code = Label(search_customers, text='Discount Code').grid(row=index+12, column=0, sticky=W, padx=10)
+        lab_pricepaid = Label(search_customers, text='Pricepaid').grid(row=index+13, column=0, sticky=W, padx=10)
+        lab_id = Label(search_customers, text='User ID').grid(row=index+14, column=0, sticky=W, padx=10)
+
+        global box_first_name2
+        box_first_name2 = Entry(search_customers)
+        box_first_name2.grid(row=index+1, column=1, pady=5)
+        box_first_name2.insert(0, result_2[0][0])
+
+        global box_last_name2
+        box_last_name2 = Entry(search_customers)
+        box_last_name2.grid(row=index+2, column=1, pady=5)
+        box_last_name2.insert(0, result_2[0][1])
+
+        global box_address1_2
+        box_address1_2 = Entry(search_customers)
+        box_address1_2.grid(row=index+3, column=1, pady=5)
+        box_address1_2.insert(0, result_2[0][6])
+
+        global box_address2_2
+        box_address2_2 = Entry(search_customers)
+        box_address2_2.grid(row=index+4, column=1, pady=5)
+        box_address2_2.insert(0, result_2[0][7])
+
+        global box_city2
+        box_city2 = Entry(search_customers)
+        box_city2.grid(row=index+5, column=1, pady=5)
+        box_city2.insert(0, result_2[0][8])
+
+        global box_state2
+        box_state2 = Entry(search_customers)
+        box_state2.grid(row=index+6, column=1, pady=5)
+        box_state2.insert(0, result_2[0][9])
+
+        global box_zipcode2
+        box_zipcode2 = Entry(search_customers)
+        box_zipcode2.grid(row=index+7, column=1, pady=5)
+        box_zipcode2.insert(0, result_2[0][2])
+
+        global box_country2
+        box_country2 = Entry(search_customers)
+        box_country2.grid(row=index+8, column=1, pady=5)
+        box_country2.insert(0, result_2[0][10])
+
+        global box_phone2
+        box_phone2 = Entry(search_customers)
+        box_phone2.grid(row=index+9, column=1, pady=5)
+        box_phone2.insert(0, result_2[0][11])
+
+        global box_email2
+        box_email2 = Entry(search_customers)
+        box_email2.grid(row=index+10, column=1, pady=5)
+        box_email2.insert(0, result_2[0][5])
+
+        global box_payment_method2
+        box_payment_method2 = Entry(search_customers)
+        box_payment_method2.grid(row=index+11, column=1, pady=5)
+        box_payment_method2.insert(0, result_2[0][12])
+
+        global box_discount_code2
+        box_discount_code2 = Entry(search_customers)
+        box_discount_code2.grid(row=index+12, column=1, pady=5)
+        box_discount_code2.insert(0, result_2[0][13])
+
+        global box_pricepaid2
+        box_pricepaid2 = Entry(search_customers)
+        box_pricepaid2.grid(row=index+13, column=1, pady=5)
+        box_pricepaid2.insert(0, result_2[0][3])
+
+        global box_id2
+        box_id2 = Entry(search_customers)
+        box_id2.grid(row=index+14, column=1, pady=5)
+        box_id2.insert(0, result_2[0][4])
+
+        btn_save_record = Button(search_customers, text='Update', command=update).grid(row=index+15, column=0)
+
+
+
     def searchNow():
         selected = drop.get()
         sql = ''
@@ -120,9 +243,11 @@ def searchCustomer():
         else:
             for index, x in enumerate(result):
                 num = 0
-                index += 3
+                index += 2
+                id_reference = str(x[4])
+                btn_edit = Button(search_customers, text='Edit', command=lambda: edit(id_reference, index)).grid(row=index, column=num)
                 for y in x:
-                    lab_search = Label(search_customers, text=y).grid(row=index, column=num)
+                    lab_search = Label(search_customers, text=y).grid(row=index, column=num+1)
                     num += 1
             btn_csv = Button(search_customers, text='Save as CSV', command=lambda: writeToCsv).grid(row=index+3, column=0) 
         # lab_search = Label(search_customers, text=result).grid(row=3, column=0, padx=10, columnspan=2)
@@ -212,6 +337,6 @@ btn_clear_fields = Button(root, text='Clear Fields', command=clearFields).grid(r
 # list customer buttons
 btn_list_customers = Button(root, text='List Customer', command=ListCustomers).grid(row=15, column=0, sticky=W, padx=10)
 # Search Customer buttons
-btn_search_customers = Button(root, text='Search Customer', command=searchCustomer).grid(row=15, column=1, sticky=W, padx=10)
+btn_search_customers = Button(root, text='Search/Edit Customer', command=searchCustomer).grid(row=15, column=1, sticky=W, padx=10)
 
 root.mainloop()
