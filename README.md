@@ -16,3 +16,10 @@
     1. 將Tkinter 轉 EXE  
         (1) 安裝 pyinstaller (pip install pyinstaller)  
         (2) pyinstaller.exe --onefile --icon=(icon file) (filename.py)
+
+- 2023.02.10
+    1.  後續檔案利用檔案23作為編寫方式
+    2.  建立圓角(圖形)按鈕:
+        Button(frame, image=image, borderwidth=0, command=command)
+        - 利用 borderwidth=0 去除邊框即可呈現圖像式按鈕(button)
+    

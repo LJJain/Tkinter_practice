@@ -13,12 +13,12 @@ def App():
 class Main():
     def __init__(self, main):
         self.main = main
-        self.fram = Frame(self.main)
-        self.fram.pack()
+        self.frame = Frame(self.main)
+        self.frame.pack()
 
         # https://en.wikipedia.org/wiki/List_of_Unicode_characters
-        self.label = Label(self.fram, text='text' + u'\u00b0', font=('Times New Roman', 32)).pack(pady=10)
-        self.button = Button(self.fram, text=u'\u00BB', font=('Times New Roman', 32)).pack(pady=10)
+        self.label = Label(self.frame, text='text' + u'\u00b0', font=('Times New Roman', 32)).pack(pady=10)
+        self.button = Button(self.frame, text=u'\u00BB', font=('Times New Roman', 32)).pack(pady=10)
 
 
 
